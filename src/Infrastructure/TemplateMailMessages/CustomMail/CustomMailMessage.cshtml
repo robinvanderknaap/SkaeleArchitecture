@@ -1,0 +1,7 @@
+﻿@{
+    Layout = "Layouts.MailLayout.cshtml";
+    Culture = ViewBag.Culture;
+}
+
+@section Subject {@Model.Subject}
+<p>@Raw(Model.Body.Replace("\r\n", "</p><p>"))</p>
