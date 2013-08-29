@@ -33,25 +33,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoPoco">
-      <HintPath>..\packages\AutoPocoBeta.1.2.0\lib\AutoPoco.dll</HintPath>
+      <HintPath>..\..\packages\AutoPocoBeta.1.2.0\lib\AutoPoco.dll</HintPath>
     </Reference>
     <Reference Include="AutoPoco.DataSources">
-      <HintPath>..\packages\AutoPoco.DataSources.1.0.42\lib\AutoPoco.DataSources.dll</HintPath>
+      <HintPath>..\..\packages\AutoPoco.DataSources.1.0.42\lib\AutoPoco.DataSources.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <HintPath>..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Security">
-      <HintPath>..\packages\Npgsql.2.0.13-beta1\lib\net45\Mono.Security.dll</HintPath>
+      <HintPath>..\..\packages\Npgsql.2.0.13-beta1\lib\net45\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+      <HintPath>..\..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql">
-      <HintPath>..\packages\Npgsql.2.0.13-beta1\lib\net45\Npgsql.dll</HintPath>
+      <HintPath>..\..\packages\Npgsql.2.0.13-beta1\lib\net45\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="policy.2.0.Npgsql">
-      <HintPath>..\packages\Npgsql.2.0.13-beta1\lib\net45\policy.2.0.Npgsql.dll</HintPath>
+      <HintPath>..\..\packages\Npgsql.2.0.13-beta1\lib\net45\policy.2.0.Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,17 +62,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DemoData\PocoGenerator.cs" />
     <Compile Include="DemoData\PocoUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\LocalConfig\Environment.config">
+    <None Include="..\..\LocalConfig\Environment.config">
       <Link>Environment.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\LocalConfig\NLog.config">
+    <None Include="..\..\LocalConfig\NLog.config">
       <Link>NLog.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
