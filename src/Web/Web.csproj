@@ -178,6 +178,7 @@
     <Content Include="Public\Css\FontAwesome\font-awesome.min.css" />
     <Content Include="Public\Css\JqGrid\ui.jqgrid.css" />
     <Content Include="Public\Font\FontAwesome\fontawesome-webfont.svg" />
+    <Content Include="Public\Images\ajax-loader.gif" />
     <Content Include="Public\Images\blocks.png" />
     <Content Include="Public\Images\chuck.jpg" />
     <Content Include="Public\Images\favicon.ico" />
@@ -185,6 +186,8 @@
     <Content Include="Public\Css\main.css" />
     <Content Include="Public\Js\Bootstrap\html5shiv.js" />
     <Content Include="Public\Js\Bootstrap\respond.min.js" />
+    <Content Include="Public\Js\defaultAjaxForm.js" />
+    <Content Include="Public\Js\dummyConsole.js" />
     <Content Include="Public\Js\flashMessage.js" />
     <Content Include="Public\Js\Jquery.Form\jquery.form.js" />
     <Content Include="Public\Js\Jquery.Validate\jquery.validate.min.js" />

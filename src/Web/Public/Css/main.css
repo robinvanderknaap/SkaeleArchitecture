@@ -30,7 +30,6 @@
         background-position: right bottom;
     }
 }
-
 .panel-heading i {
     margin-right: 5px;
 }
@@ -67,7 +66,6 @@
     top:0;
     width:100%;
 }
-
 .ajaxLoader {
     left:50%;
     position:absolute;

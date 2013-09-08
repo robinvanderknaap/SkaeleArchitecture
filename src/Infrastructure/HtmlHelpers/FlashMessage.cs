@@ -15,7 +15,7 @@ namespace Infrastructure.HtmlHelpers
             // Return empty string when no flashmessages were found in either viewdata or tempdata
             if (helper.ViewContext.TempData["flashMessage"] == null && helper.ViewContext.ViewData["flashMessage"] == null)
             {
-                return new HtmlString(string.Format("<div id='{0}'></div>", id));
+                return new HtmlString(string.Format("<div class=\"col-md-12\" id='{0}'></div>", id));
             }
 
             // Get flashmessages from tempdata else from viewdata

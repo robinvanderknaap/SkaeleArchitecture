@@ -13,54 +13,47 @@
             <div class="panel-body">
                 @using (Html.BeginForm("Email", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
-                    <div class="control-group">
-                        @Html.LabelFor(x => x.To, new { @class = "control-label" })
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on">@@</span>
-                                @Html.TextBoxFor(x => x.To, new { @class = "span4", data_val = "true", data_val_required = "Required", data_val_email = "Invalid email address" })
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.To, new { @class = "control-label col-md-1" })
+                        <div class="input-group col-md-10">
+                            <span class="input-group-addon">@@</span>
+                            @Html.TextBoxFor(x => x.To, new { @class = "form-control", data_val = "true", data_val_required = "Required", data_val_email = "Invalid email address" })
                             @Html.ValidationMessageFor(x => x.To)
                         </div>
                     </div>
-                    <div class="control-group">
-                        @Html.LabelFor(x => x.Cc, new { @class = "control-label" })
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on">@@</span>
-                                @Html.TextBoxFor(x => x.Cc, new { @class = "span4", data_val = "true", data_val_email = "Invalid email address" })
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Cc, new { @class = "control-label col-md-1" })
+                        <div class="input-group col-md-10">
+                            <span class="input-group-addon">@@</span>
+                            @Html.TextBoxFor(x => x.Cc, new { @class = "form-control", data_val = "true", data_val_email = "Invalid email address" })
                             @Html.ValidationMessageFor(x => x.Cc)
                         </div>
                     </div>
-                    <div class="control-group">
-                        @Html.LabelFor(x => x.Bcc, new { @class = "control-label" })
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on">@@</span>
-                                @Html.TextBoxFor(x => x.Bcc, new { @class = "span4", data_val = "true", data_val_email = "Invalid email address" })
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Bcc, new { @class = "control-label col-md-1" })
+                        <div class="input-group col-md-10">
+                            <span class="input-group-addon">@@</span>
+                            @Html.TextBoxFor(x => x.Bcc, new { @class = "form-control", data_val = "true", data_val_email = "Invalid email address" })
                             @Html.ValidationMessageFor(x => x.Bcc)
                         </div>
                     </div>
-                    <div class="control-group">
-                        @Html.LabelFor(x => x.Subject, new { @class = "control-label" })
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on"><i class="icon-pencil"></i></span>
-                                @Html.TextBoxFor(x => x.Subject, new { @class = "span4", data_val = "true", data_val_required = "Required" })
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Subject, new { @class = "control-label col-md-1" })
+                        <div class="input-group col-md-10">
+                            <span class="input-group-addon"><i class="icon-pencil"></i></span>
+                            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", data_val = "true", data_val_required = "Required" })
                             @Html.ValidationMessageFor(x => x.Subject)
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            @Html.TextAreaFor(x => x.Body, new { placeholder = "Enter your message here", rows = "10", @class = "span9" })
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Body, new { @class = "control-label col-md-1" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(x => x.Body, new { placeholder = "Enter your message here", rows = "10", @class = "form-control" })
                         </div>
                     </div>
                     
-                    <div class="control-group">
-                        <div class="controls">
+                    <div class="form-group">
+                        <div class="col-md-11 col-md-offset-1">
                             <button type="submit" class="btn btn-success">Send email</button>
                         </div>
                     </div>
