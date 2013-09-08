@@ -5,13 +5,15 @@ using System.Web.Routing;
 using Autofac;
 using Data.Utils;
 using Domain.AbstractRepository;
+using Infrastructure.Loggers;
 using NHibernate;
 using Web.App_Start;
+using Web.Controllers;
 using Web.Cultures;
 
 namespace Web
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public const string SessionKey = "NHibernate.Session"; // We need this key to idetify the name of the nhibernate session in the http context items (used in NinjectSetup.cs in App_Start folder)
         public static ISessionFactory SessionFactory { get; private set; } // Initiated only once in Application_Start()
@@ -76,6 +78,48 @@ namespace Web
 
             // Set culture for current request
             AutoFac.Container.Resolve<ICultureService>().SetCulture(new HttpContextWrapper(HttpContext.Current));
+        }
+
+        // Handles all application errors and calls for the right view on the errorcontroller http://stackoverflow.com/a/5229581/426840
+        protected void Application_Error()
+        {
+            var exception = Server.GetLastError();
+            var httpException = exception as HttpException;
+
+            var logger = AutoFac.Container.Resolve<ILogger>();
+
+            var logId = exception != null ?
+                logger.Fatal(exception.Message, exception) :
+                logger.Error("Unhandled error"); // This will probably never be called, but added to be sure
+
+            // Don't execute error controller for custom error mesages when custom error is disabled
+            if (!HttpContext.Current.IsCustomErrorEnabled) return;
+
+            Response.Clear();
+            Server.ClearError();
+
+            Response.StatusCode = 500;
+
+            // Avoid IIS messing with custome errors http://stackoverflow.com/a/1719474/426840
+            // Also http://stackoverflow.com/a/2345742/426840 for web.config
+            Response.TrySkipIisCustomErrors = true;
+
+            if (httpException != null)
+            {
+                Response.StatusCode = httpException.GetHttpCode();
+            }
+
+            var routeData = new RouteData();
+            routeData.Values["controller"] = "Error";
+            routeData.Values["action"] = Response.StatusCode != 404 ? "Index" : "NotFound";
+            routeData.Values["exception"] = exception;
+            routeData.Values["logId"] = logId;
+
+            IController errorsController = new ErrorController();
+
+            var rc = new RequestContext(new HttpContextWrapper(Context), routeData);
+
+            errorsController.Execute(rc);
         }
     }
 }

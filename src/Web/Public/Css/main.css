@@ -30,6 +30,9 @@
         background-position: right bottom;
     }
 }
+.jumbotron-error {
+    display:inherit;
+}
 .panel-heading i {
     margin-right: 5px;
 }

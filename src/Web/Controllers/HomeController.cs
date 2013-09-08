@@ -35,12 +35,6 @@ namespace Web.Controllers
             return View();
         }
 
-        // Used to test unauthorized error page
-        public ActionResult Unauthorized()
-        {
-            throw new HttpException(401, "You're not authorized to view this page");
-        }
-
         // Used to test forbidden error page
         public ActionResult Forbidden()
         {
