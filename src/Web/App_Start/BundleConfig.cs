@@ -30,7 +30,9 @@ namespace Web.App_Start
                     "~/Public/Js/Bootstrap/bootstrap.min.js",
                     "~/Public/Js/Jquery/jquery-2.0.3.min.js",
                     "~/Public/Js/Jquery.Validate/jquery.validate.min.js",
-                    "~/Public/Js/Jquery.Validate/jquery.validate.unobtrusive.min.js"
+                    "~/Public/Js/Jquery.Validate/jquery.validate.unobtrusive.min.js",
+                    "~/Public/Js/main.js",
+                    "~/Public/Js/flashMessage.js"
                     //"~/Themes/Default/Js/Libraries/Select2/select2.min.js",
                     //"~/Themes/Default/Js/Libraries/Jquery.Form/jquery.form.js",
                     //"~/Themes/Default/Js/Libraries/Jquery.Event.Drag/jquery.Event.Drag-2.2.js",
@@ -41,8 +43,6 @@ namespace Web.App_Start
                     //"~/Themes/Default/Js/Libraries/JqGrid/i18n/grid.locale-nl.js",
                     //"~/Themes/Default/Js/Libraries/JqGrid/jquery.jqGrid.src.js",
                     //"~/Themes/Default/Js/defaultAjaxForm.js",
-                    //"~/Themes/Default/Js/main.js",
-                    //"~/Themes/Default/Js/flashMessage.js",
                     //"~/Themes/Default/Js/userIndexController.js",
                     //"~/Themes/Default/Js/logGridController.js"
                 )

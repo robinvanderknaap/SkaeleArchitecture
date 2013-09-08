@@ -185,10 +185,12 @@
     <Content Include="Public\Css\main.css" />
     <Content Include="Public\Js\Bootstrap\html5shiv.js" />
     <Content Include="Public\Js\Bootstrap\respond.min.js" />
+    <Content Include="Public\Js\flashMessage.js" />
     <Content Include="Public\Js\Jquery.Form\jquery.form.js" />
     <Content Include="Public\Js\Jquery.Validate\jquery.validate.min.js" />
     <Content Include="Public\Js\Jquery.Validate\jquery.validate.unobtrusive.min.js" />
     <Content Include="Public\Js\Jquery\jquery-2.0.3.min.js" />
+    <Content Include="Public\Js\main.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -246,9 +248,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Public\Js\FontAwesome\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Shared\MainMenu.cshtml" />
   </ItemGroup>

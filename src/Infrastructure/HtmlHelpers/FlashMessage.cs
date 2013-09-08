@@ -27,6 +27,7 @@ namespace Infrastructure.HtmlHelpers
             
             // Set container id
             container.Attributes.Add("id", id);
+            container.AddCssClass("col-md-12");
             
             // Add flashmessages to container
             foreach(var flashMessage in flashMessages)
@@ -52,13 +53,13 @@ namespace Infrastructure.HtmlHelpers
                 }
                 
                 const string flashMessageTemplate = @"
-                    <div class=""{0}""  onclick='$(this).fadeOut()'>{1}{2}</div>                     
+                    <div class=""{0}""  onclick='$(this).slideUp()'>{1}{2}</div>                     
                 ";
                 
                 // Add flashmessage to container
                 container.InnerHtml += string.Format(flashMessageTemplate,
                     cssClass,
-                    string.IsNullOrWhiteSpace(flashMessage.Title) ? string.Empty : "<h4>" + flashMessage.Title + "</h4>",
+                    string.IsNullOrWhiteSpace(flashMessage.Title) ? string.Empty : "<strong>" + flashMessage.Title + " - </strong>",
                     flashMessage.Message
                 );
             }

@@ -9,7 +9,44 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-right">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="icon-bookmark"></i>@T.Shortcuts
+            </div>
+            <div class="panel-body">
+                <ul class="list-inline">
+                    <li>
+                        <a href="@Url.Action("Index", "User")" class="shortcut btn-primary">
+                            <i class="icon-user"></i>
+                            <span>@T.Users.ToLower()</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Log")" class="shortcut btn-warning">
+                            <i class="icon-book"></i>
+                            <span>log</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("FlashMessages", "Home")" class="shortcut btn-success">
+                            <i class="icon-bolt"></i>
+                            <span>flash</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Email", "Home")" class="shortcut btn-danger">
+                            <i class="icon-envelope"></i>
+                            <span>email</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-left">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="icon-file"></i>@T.ChuckNorrisFacts
@@ -21,43 +58,8 @@
                     <small><cite title="Chuck Norris Ipsum"><a href="http://chuckipsum.com/">Chuck Norris Ipsum</a></cite></small>
                 </blockquote>
                 <p>Chuck Norris once kicked a baby elephant into puberty. Chuck Norris put humpty dumpty back together again, only to roundhouse kick him in the face. Later Chuck dined on scrambled eggs with all the king's horses and all the king's men. The king himself could not attend for unspecified reasons.</p>
-                <p>Coincidentally, the autopsy revealed the cause of death to be a roundhouse kick to the face. There is only one King. Playgirl magazine once asked Chuck Norris to appear naked in an issue, Chuck laughed at the opportunity saying “there isn’t enough paper in the world to contain my bearded member”. He then killed the editors simply by unzipping his pants. Chuck Norris always has sex on the first date. Always.</p>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="icon-bookmark"></i>@T.Shortcuts
-            </div>
-            <div class="panel-body">
-                <ul class="list-inline">
-                    <li>
-                        <a href="@Url.Action("Index", "User")" class="shortcut">
-                            <i class="icon-user"></i>
-                            <span>@T.Users.ToLower()</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index", "Log")" class="shortcut">
-                            <i class="icon-book"></i>
-                            <span>log</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("FlashMessages", "Home")" class="shortcut">
-                            <i class="icon-bolt"></i>
-                            <span>flash</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Email", "Home")" class="shortcut">
-                            <i class="icon-envelope"></i>
-                            <span>email</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    
 </div>
