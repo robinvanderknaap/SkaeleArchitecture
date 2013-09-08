@@ -1,0 +1,17 @@
+﻿@section Title { Error }
+
+<div class="hero-unit">
+  <h1>@ViewBag.HttpStatusCode - @ViewBag.HttpStatusMessage</h1>
+    <p>
+        This error is logged to our database with the following unique identifier:
+    </p>
+    <h3>@ViewBag.LogId</h3>
+    <p>
+        Provide this identifier when contacting support, it will help them locate the error quickly.
+    </p>
+  <p>
+    <a href="mailto:info@skaele.com?subject=Error%20report&body=I%20would%20like%20to%20report%20an%20error%20with%20unique%20id:%20@(ViewBag.LogId)" class="btn btn-primary btn-large">
+      Contact support
+    </a>
+  </p>
+</div>

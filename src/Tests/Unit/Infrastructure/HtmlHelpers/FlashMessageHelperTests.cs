@@ -102,7 +102,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
                         <h4>Notice</h4>
                         This is a flashmessage
                     </div>
-                    <div class=""alert alert-error alert-block""  onclick='$(this).fadeOut()'>
+                    <div class=""alert alert-danger alert-block""  onclick='$(this).fadeOut()'>
                         <h4>Another notice</h4>
                         This is a another flashmessage
                     </div>

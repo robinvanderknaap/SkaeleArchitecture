@@ -1,0 +1,63 @@
+﻿@section Title { Dashboard }
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Skaele Architecture</h1>
+        <p>'<em><small>My name is Chuck Norris and I approve this architecture</small></em>'</p>
+        <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="icon-file"></i>@T.ChuckNorrisFacts
+            </div>
+            <div class="panel-body">
+                <p>Scientists in Washington have recently conceded that, if there were a nuclear war, all that would remain are cockroaches and Chuck Norris. Chuck Norris made Ellen Degeneres straight. Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the f*ck down.</p>
+                <blockquote>
+                    <p>Crop circles are Chuck Norris' way of telling the world that sometimes corn needs to lie the f*ck down.</p>
+                    <small><cite title="Chuck Norris Ipsum"><a href="http://chuckipsum.com/">Chuck Norris Ipsum</a></cite></small>
+                </blockquote>
+                <p>Chuck Norris once kicked a baby elephant into puberty. Chuck Norris put humpty dumpty back together again, only to roundhouse kick him in the face. Later Chuck dined on scrambled eggs with all the king's horses and all the king's men. The king himself could not attend for unspecified reasons.</p>
+                <p>Coincidentally, the autopsy revealed the cause of death to be a roundhouse kick to the face. There is only one King. Playgirl magazine once asked Chuck Norris to appear naked in an issue, Chuck laughed at the opportunity saying “there isn’t enough paper in the world to contain my bearded member”. He then killed the editors simply by unzipping his pants. Chuck Norris always has sex on the first date. Always.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="icon-bookmark"></i>@T.Shortcuts
+            </div>
+            <div class="panel-body">
+                <ul class="list-inline">
+                    <li>
+                        <a href="@Url.Action("Index", "User")" class="shortcut">
+                            <i class="icon-user"></i>
+                            <span>@T.Users.ToLower()</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Log")" class="shortcut">
+                            <i class="icon-book"></i>
+                            <span>log</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("FlashMessages", "Home")" class="shortcut">
+                            <i class="icon-bolt"></i>
+                            <span>flash</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Email", "Home")" class="shortcut">
+                            <i class="icon-envelope"></i>
+                            <span>email</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

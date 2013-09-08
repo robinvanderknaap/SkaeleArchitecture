@@ -92,6 +92,16 @@ namespace Infrastructure.ApplicationSettings
             get { return GetSetting<bool>("SmtpSslEnabled"); }
         }
 
+        public string WebMessageQueueAddress
+        {
+            get { return GetSetting<string>("WebMessageQueueAddress"); }
+        }
+
+        public string MailSenderMessageQueueAddress
+        {
+            get { return GetSetting<string>("MailSenderMessageQueueAddress"); }
+        }
+
         public CultureInfo DefaultCulture
         {
             get { return new CultureInfo(GetSetting<string>("DefaultCulture")); }

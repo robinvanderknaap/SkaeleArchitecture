@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Infrastructure.ApplicationSettings
@@ -20,5 +21,7 @@ namespace Infrastructure.ApplicationSettings
         CultureInfo DefaultCulture { get; }
         IEnumerable<CultureInfo> AcceptedCultures { get; }
         bool SmtpSslEnabled { get; }
+        string WebMessageQueueAddress { get; }
+        string MailSenderMessageQueueAddress { get; }
     }
 }

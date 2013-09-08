@@ -47,21 +47,18 @@ namespace Infrastructure.HtmlHelpers
                         cssClass = "alert alert-block";
                         break;
                     case FlashMessageType.Error:
-                        cssClass = "alert alert-error alert-block";
+                        cssClass = "alert alert-danger alert-block";
                         break;
                 }
                 
                 const string flashMessageTemplate = @"
-                    <div class=""{0}""  onclick='$(this).fadeOut()'>
-                        <h4>{1}</h4>
-                        {2}
-                    </div>                     
+                    <div class=""{0}""  onclick='$(this).fadeOut()'>{1}{2}</div>                     
                 ";
                 
                 // Add flashmessage to container
                 container.InnerHtml += string.Format(flashMessageTemplate,
                     cssClass,
-                    flashMessage.Title,
+                    string.IsNullOrWhiteSpace(flashMessage.Title) ? string.Empty : "<h4>" + flashMessage.Title + "</h4>",
                     flashMessage.Message
                 );
             }

@@ -14,7 +14,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
         {
             var result = Html.MainMenu().ToHtmlString();
 
-            const string expectedResult = @"<ulclass=""navnav-pills""></ul>";
+            const string expectedResult = @"<ulclass=""nav navbar-nav""></ul>";
 
             Assert.AreEqual(expectedResult.StripWhiteSpace(), result.StripWhiteSpace());
         }
@@ -51,7 +51,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
                 .ToHtmlString();
 
             const string expectedResult = @"
-                <ul class=""nav nav-pills"">
+                <ul class=""nav navbar-nav"">
                     <li>
                         <a href=""/"">
                             <i class=""HomeIcon""></i>
@@ -107,7 +107,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
                 .ToHtmlString();
 
             const string expectedResult = @"
-                <ul class=""nav nav-pills"">
+                <ul class=""nav navbar-nav"">
                     <li>
                         <a href=""/"">
                             <i class=""HomeIcon""></i>
@@ -156,7 +156,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
                 .ToHtmlString();
 
             const string expectedResult = @"
-                <ul class=""nav nav-pills"">
+                <ul class=""nav navbar-nav"">
                     <li class=""active"">
                         <a href="""">
                             <i class=""HomeIcon""></i>
@@ -209,7 +209,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
                 .ToHtmlString();
 
             const string expectedResult = @"
-                <ul class=""nav nav-pills"">
+                <ul class=""nav navbar-nav"">
                     <li>
                         <a href=""#"">
                             <i class=""HomeIcon""></i>
@@ -257,7 +257,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
                 .ToHtmlString();
 
             const string expectedResult = @"
-                <ul class=""nav nav-pills"">
+                <ul class=""nav navbar-nav"">
                     <li class=""dropdown"">
                         <a href=""javascript:;"" class=""dropdown-toggle"" data-toggle=""dropdown"">
                             <i class=""ReportIcon""></i>

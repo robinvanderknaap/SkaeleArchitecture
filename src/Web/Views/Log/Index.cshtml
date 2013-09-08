@@ -1,0 +1,38 @@
+﻿@section Title { Log }
+
+@using MvcJqGrid.DataReaders
+<div class="row">
+    <div class="span12">
+        <div class="widget">
+            <div class="widget-header">
+                <i class="icon-book"></i>
+                <h3>Log</h3>
+            </div>
+            <div class="widget-content" style="padding:0">
+                @(Html.Grid("logGrid")
+                    .AddColumn(new Column("Id")
+                        .SetWidth(220)
+                        .SetFixedWidth(true))
+                    .AddColumn(new Column("Created")
+                        .SetWidth(120)
+                        .SetFixedWidth(true))
+                    .AddColumn(new Column("Level")
+                        .SetWidth(60)
+                        .SetFixedWidth(true))
+                    .AddColumn(new Column("Username")
+                        .SetWidth(220)
+                        .SetFixedWidth(true))
+                    .AddColumn(new Column("Message"))
+                    .SetUrl(Url.Action("GetLogGridItem"))
+                    .SetJsonReader(new JsonReader { Id = "Id" })
+                    .SetAutoWidth(true)
+                    .SetVirtualScroll(true)
+                    .SetRowNum(30)
+                    .SetViewRecords(true)
+                    .SetSearchToolbar(true)
+                    .SetSearchOnEnter(false)
+                )
+            </div>
+        </div>
+    </div>
+</div>

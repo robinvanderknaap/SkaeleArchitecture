@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using Infrastructure.ApplicationSettings;
 using NLog;
 
@@ -103,30 +101,8 @@ namespace Infrastructure.Loggers
                 logEventInfo.Properties.Add("clientBrowser", clientBrowser);
                 logEventInfo.Properties.Add("ipAddress", ipAddress);
 
-                string postParameters;
-
-                // log ajax posts ensure we don't log files or other big things
-                if (_httpContextBase.Request.IsAjaxRequest() && _httpContextBase.Request.InputStream.Length > 0 &&
-                    _httpContextBase.Request.InputStream.Length < 5125)
-                {
-                    var inputStream = new MemoryStream();
-                    _httpContextBase.Request.InputStream.Position = 0;
-                    _httpContextBase.Request.InputStream.CopyTo(inputStream);
-                    inputStream.Position = 0;
-                    _httpContextBase.Request.InputStream.Position = 0;
-
-                    using (var r = new StreamReader(inputStream))
-                    {
-                        postParameters = r.ReadToEnd();
-                    }
-
-                    inputStream.Dispose();
-                }
-                else
-                {
-                    var postedFormValues = _httpContextBase.Request.Form.AllKeys.Select(x => string.Format("{0}:{1}", x, _httpContextBase.Request.Form[x]));
-                    postParameters = string.Join(";", postedFormValues);
-                }
+                var postedFormValues = _httpContextBase.Request.Form.AllKeys.Select(x => string.Format("{0}:{1}", x, _httpContextBase.Request.Form[x]));
+                var postParameters = string.Join(";", postedFormValues);
 
                 logEventInfo.Properties.Add("postedFormValues", postParameters);
             }

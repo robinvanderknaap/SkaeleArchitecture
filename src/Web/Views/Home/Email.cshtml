@@ -1,0 +1,85 @@
+﻿@model Web.ViewModels.Home.EmailViewModel
+
+@section Title { Email }
+
+
+<div class="row">
+    <div class="span12 ">
+        <div class="widget">
+            <div class="widget-header">
+                <i class="icon-envelope"></i>
+                <h3>Send email</h3>
+            </div>
+            <div class="widget-content">
+                @using (Html.BeginForm("Email", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="control-group">
+                        @Html.LabelFor(x => x.To, new { @class = "control-label" })
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">@@</span>
+                                @Html.TextBoxFor(x => x.To, new { @class = "span4", data_val = "true", data_val_required = "Required", data_val_email = "Invalid email address" })
+                            </div>
+                            @Html.ValidationMessageFor(x => x.To)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(x => x.Cc, new { @class = "control-label" })
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">@@</span>
+                                @Html.TextBoxFor(x => x.Cc, new { @class = "span4", data_val = "true", data_val_email = "Invalid email address" })
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Cc)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(x => x.Bcc, new { @class = "control-label" })
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on">@@</span>
+                                @Html.TextBoxFor(x => x.Bcc, new { @class = "span4", data_val = "true", data_val_email = "Invalid email address" })
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Bcc)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(x => x.Subject, new { @class = "control-label" })
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on"><i class="icon-pencil"></i></span>
+                                @Html.TextBoxFor(x => x.Subject, new { @class = "span4", data_val = "true", data_val_required = "Required" })
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Subject)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            @Html.TextAreaFor(x => x.Body, new { placeholder = "Enter your message here", rows = "10", @class = "span9" })
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success">Send email</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.form-horizontal').defaultAjaxForm({
+            success: function (data) {
+                AddFlashMessage('Success', data, 'success');
+                $('.form-horizontal').trigger('reset');
+            },
+            error: function () {
+                AddFlashMessage('Error', 'An error occured while sending the email', 'error');
+            }
+        });
+    });
+</script>

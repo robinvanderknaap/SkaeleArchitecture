@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="shortcut icon" href="~/Public/Images/favicon.ico">
+
+        <title>@RenderSection("Title", required: true) - Skaele Architecture</title>
+
+        @Styles.Render("~/Bundle/Css")
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="~/Public/Js/Bootstrap/html5shiv.js"></script>
+            <script src="~/Public/Js/Bootstrap/respond.min.js"></script>
+        <![endif]-->
+      
+        @Scripts.Render("~/Bundle/Js")
+    </head>
+    <body>
+        @Html.FlashMessage("flashMessages")
+        @if (IsSectionDefined("MainMenu"))
+        {
+            @RenderSection("MainMenu", required: false)
+        }
+        else
+        {
+            @Html.Partial("MainMenu")
+        }
+
+        <div class="container">
+            @RenderBody()
+        </div>
+
+        @if (IsSectionDefined("Footer"))
+        {
+            @RenderSection("Footer", required: false)
+        }
+        else
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="~/Public/Images/blocks.png" alt=""/>
+                        <span class="pull-right">v@(Settings.ApplicationVersion) </span>
+                    </div>
+                </div>
+            </div>
+        }
+    </body>
+</html>

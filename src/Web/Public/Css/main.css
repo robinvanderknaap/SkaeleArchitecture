@@ -1,0 +1,87 @@
+﻿body {
+    padding-top:60px;
+}
+.field-validation-error {
+    color:#b94a48;
+    display: block;
+}
+.input-validation-error {
+    background-color:#f2dede!important;
+}
+.navbar-inverse .navbar-brand:hover {
+    color: #999;
+}
+.jumbotron {
+    background-image: url(../Images/chuck.jpg);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+.panel-heading i {
+    margin-right: 5px;
+}
+.panel-message {
+    padding:10px;
+    border-radius: 4px;
+    border: 1px solid;
+}
+.shortcut { 
+    display: block;
+    float:left;
+	width:80px;
+    height:80px;
+	text-align: center;	
+	text-decoration: none;
+	color: #555;
+    background-color: #eee;
+	border-radius: 5px;
+    margin: 0 10px 10px 0;
+    vertical-align: middle;
+}
+    .shortcut:hover {
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #3276b1;
+        border-color: #285e8e;
+    }
+    .shortcut i {
+        font-size: 24px;
+        margin-top:20px;
+        display:block;
+    }
+    .shortcut span {
+        display:block;
+        line-height: 20px;
+    }
+#flashMessages {
+    position: absolute;
+    width: 100%;
+    width: 400px;
+    margin-left: 50%;
+    left: -200px; /* 50% of width, to center messages */
+    top: 10px;
+    z-index: 1031;
+}
+#flashMessages div {
+    position: relative;
+    z-index: 999;
+    margin-top: 0;
+    display: block;
+    float: left;
+    clear: both;
+    width: 100%;
+}
+.ajaxFormOverlay {
+    background: no-repeat scroll 50% 50% #AAA;
+    opacity:0.3;
+    height:100%;
+    left:0;
+    position:absolute;
+    top:0;
+    width:100%;
+}
+
+.ajaxLoader {
+    left:50%;
+    position:absolute;
+    top: 50%;
+}

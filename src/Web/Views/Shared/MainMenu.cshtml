@@ -1,0 +1,62 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*@Html.ActionLink("Skaele", "Index", "Home", null ,new { @class="navbar-brand"})*@
+            <span class="navbar-brand">Skaele</span>
+        </div>
+        <div class="navbar-collapse collapse">
+            @(Html.MainMenu()
+                .Add(new MainMenuItem()
+                        .Action<HomeController>("Index")
+                        .Text(T.Dashboard))
+                .Add(new MainMenuItem()
+                        .Action<UserController>("Index")
+                        .Text(T.Users))
+                .Add(new MainMenuItem()
+                        .Text(T.MorePages)
+                        .Add(new SubMenuItem()
+                                .Url("http://www.skaele.nl")
+                                .Text("Skaele"))
+                        .Add(new SubMenuItem()
+                                .Url("https://skaele.atlassian.net/wiki/display/SK/Skaele+.NET+solution+template")
+                                .Text("Wiki"))
+                        .Add(new Divider())
+                        .Add(new SubMenuItem()
+                                .Action<HomeController>("Email")
+                                .Text(T.SendEmail))
+                        .Add(new SubMenuItem()
+                                .Action<HomeController>("FlashMessages")
+                                .Text(T.FlashMessages))
+                        .Add(new Divider())
+                        .Add(new SubMenuItem()
+                                .Action<LogController>("Index")
+                                .Text("Log"))
+                        .Add(new Divider())
+                        .Add(new NavigationHeader("Error pages"))
+                        .Add(new SubMenuItem()
+                                .Action<HomeController>("Unauthorized")
+                                .Text("401 - " + T.Unauthorized))
+                        .Add(new SubMenuItem()
+                                .Action<HomeController>("Forbidden")
+                                .Text("403 - " + T.Forbidden))
+                        .Add(new SubMenuItem()
+                                .Url("BogusUrl")
+                                .Text("404 - " + T.PageNotFound))
+                        .Add(new SubMenuItem()
+                                .Action<HomeController>("Error")
+                                .Text("500 - " + T.InternalServerError))
+                )
+            )
+            <p class="navbar-text pull-right">
+                <a href="#" class="navbar-link">@(((Domain.Users.User)User).DisplayName)</a>
+                &nbsp;-&nbsp;
+                @Html.ActionLink((string)T.Logout, "Logout", "Login", null ,new { @class="navbar-link"})
+            </p>
+        </div>
+    </div>
+</div>

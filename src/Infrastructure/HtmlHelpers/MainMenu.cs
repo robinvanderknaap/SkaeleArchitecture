@@ -36,7 +36,7 @@ namespace Infrastructure.HtmlHelpers
         public string ToHtmlString()
         {
             const string template = @"
-                <ul class=""nav nav-pills"">{0}
+                <ul class=""nav navbar-nav"">{0}
                 </ul>
             ";
 
@@ -259,6 +259,21 @@ namespace Infrastructure.HtmlHelpers
         public string ToString(ViewContext viewContext)
         {
             return "<li class=\"divider\"></li>";
+        }
+    }
+
+    public class NavigationHeader : ISubMenuItem
+    {
+        private readonly string _headerText;
+
+        public NavigationHeader(string headerText)
+        {
+            _headerText = headerText;
+        }
+
+        public string ToString(ViewContext viewContext)
+        {
+            return string.Format("<li class=\"dropdown-header\">{0}</li>", _headerText);
         }
     }
 }

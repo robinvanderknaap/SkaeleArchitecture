@@ -1,0 +1,15 @@
+﻿@section Title { Page not found }
+<div class="hero-unit">
+    <h1>Sorry, that page doesn't exist.</h1>
+    <p>
+        This error is logged to our database with the following unique identifier:
+    </p>
+    <h3>@ViewBag.LogId</h3>
+    <p>
+        If you clicked on a link, please report the missing page by contacting support by clicking on the button below.
+    </p>
+    <p>
+        <a href="mailto:info@skaele.com?subject=Error%20report&body=I%20would%20like%20to%20report%20an%20error%20with%20unique%20id:%20@(ViewBag.LogId)" class="btn btn-primary btn-large">Contact support
+        </a>
+    </p>
+</div>

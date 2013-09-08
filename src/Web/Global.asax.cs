@@ -1,16 +1,81 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
+using Data.Utils;
+using Domain.AbstractRepository;
+using NHibernate;
 using Web.App_Start;
+using Web.Cultures;
 
 namespace Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        public const string SessionKey = "NHibernate.Session"; // We need this key to idetify the name of the nhibernate session in the http context items (used in NinjectSetup.cs in App_Start folder)
+        public static ISessionFactory SessionFactory { get; private set; } // Initiated only once in Application_Start()
+        
         protected void Application_Start()
         {
+            // Initiate NHibernate session factory, this should be done once for every application start.
+            // Creating a session factory is an time-consuming operation (all mapping files are processed for example)
+            SessionFactory = NHibernateHelper.SessionFactory; 
+
             AreaRegistration.RegisterAllAreas();
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            AutoFac.Setup();
+
+            // Avoids unexpected required attributes on value types like integer.
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+        }
+
+        protected void Application_EndRequest(object sender, System.EventArgs e)
+        {
+            if (Context.Response.StatusCode == 302 && (new HttpContextWrapper(Context)).Request.IsAjaxRequest() && !string.IsNullOrWhiteSpace(Response.RedirectLocation))
+            {
+                Context.Response.StatusCode = 200;
+                Response.Headers.Add("ForceRedirect", "1"); // Indicator for client side 
+            }
+
+            // Dispose NHibernate session if exists
+            if (!Context.Items.Contains(SessionKey)) return;
+
+            var session = (ISession)Context.Items[SessionKey];
+            session.Dispose();
+            Context.Items[SessionKey] = null;
+        }
+
+        protected void Application_AcquireRequestState()
+        {
+
+            // The setting <modules runAllManagedModulesForAllRequests="true"> causes all requests including images, css, js etc to be parsed through the app.
+            // We can't turn it off, because that causes other errors with mvc. This check makes sure no null reference exceptions occur on static content
+            if (HttpContext.Current.CurrentHandler == null)
+            {
+                return;
+            }
+
+            // With cassini (and probable windows server 2003 with wildcard mapping) all requests (also images, css, js) etc trigger this method
+            // With such requests, it's not allowed to access session, not even examine if it's null, which fires an exception
+            // This check ensures only when it's an mvc request the session is accessed. Other request are handled by the
+            // default handler.
+            if (HttpContext.Current.CurrentHandler.GetType() != typeof(MvcHandler))
+            {
+                return;
+            }
+
+            if (User.Identity.IsAuthenticated)
+            {
+                Context.User = AutoFac.Container.Resolve<IUserRepository>().GetOne(x => x.Email == User.Identity.Name);
+            }
+
+            // Set culture for current request
+            AutoFac.Container.Resolve<ICultureService>().SetCulture(new HttpContextWrapper(HttpContext.Current));
         }
     }
 }

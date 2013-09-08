@@ -30,6 +30,8 @@ namespace Tests.Utils.ApplicationSettings
             DefaultCulture = applicationSettingsFromConfig.DefaultCulture;
             AcceptedCultures = applicationSettingsFromConfig.AcceptedCultures;
             SmtpSslEnabled = applicationSettingsFromConfig.SmtpSslEnabled;
+            WebMessageQueueAddress = applicationSettingsFromConfig.WebMessageQueueAddress;
+            MailSenderMessageQueueAddress = applicationSettingsFromConfig.MailSenderMessageQueueAddress;
         }
 
         public int CoolOffPeriod { get; set; }
@@ -45,6 +47,8 @@ namespace Tests.Utils.ApplicationSettings
         public string SmtpUsername { get; set; }
         public string SmtpPassword { get; set; }
         public bool SmtpSslEnabled { get; set; }
+        public string WebMessageQueueAddress { get; set; }
+        public string MailSenderMessageQueueAddress { get; set; }
         public CultureInfo DefaultCulture { get; set; }
         public IEnumerable<CultureInfo> AcceptedCultures { get; set; }
     }

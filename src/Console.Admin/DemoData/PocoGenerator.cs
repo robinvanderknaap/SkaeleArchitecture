@@ -76,6 +76,7 @@ namespace Console.Admin.DemoData
             {
                 // en-US
                 new Translation("Login", "Login", english),
+                new Translation("Logout", "Logout", english),
                 new Translation("Home", "Home", english),
                 new Translation("Users", "Users", english),
                 new Translation("SendEmail", "Send email", english),
@@ -105,9 +106,15 @@ namespace Console.Admin.DemoData
                 new Translation("Success", "Success", english),
                 new Translation("AnEmailWasSendToYourEmailaddressWithInstructionsOnHowToResetYourPassword", "An email was send to your emailaddress with instructions on how to reset your password", english),
                 new Translation("YourPasswordWasChangedSuccessfully", "Your password was changed successfully", english),
+                new Translation("ChuckNorrisFacts", "Chuck Norris Facts", english),
+                new Translation("Shortcuts", "Shortcuts", english),
+                new Translation("MorePages", "More pages", english),
+                new Translation("PasswordShouldContainAtLeast5Characters", "Password should contain at least 5 characters", english),
+                
                 
                 // nl-NL
                 new Translation("Login", "Inloggen", dutch),
+                new Translation("Logout", "Uitloggen", dutch),
                 new Translation("Home", "Thuis", dutch),
                 new Translation("Users", "Gebruikers", dutch),
                 new Translation("SendEmail", "Verstuur e-mail", dutch),
@@ -135,8 +142,12 @@ namespace Console.Admin.DemoData
                 new Translation("PasswordsDoNotMatch", "Wachtwoorden komen niet overeen", dutch),
                 new Translation("RequestToResetYourPassword", "Verzoek om uw wachtwoord te wijzigen", dutch),
                 new Translation("Success", "Succes", dutch),
-                new Translation("AnEmailWasSendToYourEmailaddressWithInstructionsOnHowToResetYourPassword", "Een email is naar u toegestuurd met instructies hoe uw wachtwoord kunt resetten.", dutch),
-                new Translation("YourPasswordWasChangedSuccessfully", "Uw wachtwoord is succesvol aangepast", dutch)
+                new Translation("AnEmailWasSendToYourEmailaddressWithInstructionsOnHowToResetYourPassword", "Een email is naar u toegestuurd met instructies hoe u uw wachtwoord kunt resetten.", dutch),
+                new Translation("YourPasswordWasChangedSuccessfully", "Uw wachtwoord is succesvol aangepast", dutch),
+                new Translation("ChuckNorrisFacts", "Chuck Norris Feiten", dutch),
+                new Translation("Shortcuts", "Shortcuts", dutch),
+                new Translation("MorePages", "Meer pagina's", dutch),
+                new Translation("PasswordShouldContainAtLeast5Characters", "Wachtwoord dient minimaal 5 tekens te bevatten", dutch)
             };
 
             translations.ForEach(translationsRepository.Save);
