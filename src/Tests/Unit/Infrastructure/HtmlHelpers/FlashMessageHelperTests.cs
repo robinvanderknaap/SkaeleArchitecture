@@ -22,9 +22,9 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
             var flashMessage = Html.FlashMessage("testId");
 
             const string expectedResult = @"
-                <div id=""testId"">
-                    <div class=""alert alert-success alert-block""  onclick='$(this).fadeOut()'>
-                        <h4>Notice</h4>
+                <div class=""col-md-12"" id=""testId"">
+                    <div class=""alert alert-success alert-block""  onclick='$(this).slideUp()'>
+                        <strong>Notice -</strong>
                         This is a flashmessage
                     </div> 
                 </div>";
@@ -45,9 +45,9 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
             var flashMessage = Html.FlashMessage("testId");
 
             const string expectedResult = @"
-                <div id=""testId"">
-                    <div class=""alert alert-block""  onclick='$(this).fadeOut()'>
-                        <h4>Notice</h4>
+                <div class=""col-md-12"" id=""testId"">
+                    <div class=""alert alert-block""  onclick='$(this).slideUp()'>
+                        <strong>Notice -</strong>
                         This is a flashmessage
                     </div> 
                 </div>";
@@ -69,13 +69,13 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
             var flashMessage = Html.FlashMessage("testId");
 
             const string expectedResult = @"
-                <div id=""testId"">
-                    <div class=""alert alert-success alert-block""  onclick='$(this).fadeOut()'>
-                        <h4>Notice</h4>
+                <div class=""col-md-12"" id=""testId"">
+                    <div class=""alert alert-success alert-block""  onclick='$(this).slideUp()'>
+                        <strong>Notice -</strong>
                         This is a flashmessage
                     </div>
-                    <div class=""alert alert-info alert-block""  onclick='$(this).fadeOut()'>
-                        <h4>Another notice</h4>
+                    <div class=""alert alert-info alert-block""  onclick='$(this).slideUp()'>
+                        <strong>Another notice -</strong>
                         This is a another flashmessage
                     </div>
                 </div>";
@@ -97,13 +97,13 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
             var flashMessage = Html.FlashMessage("testId");
 
             const string expectedResult = @"
-                <div id=""testId"">
-                    <div class=""alert alert-success alert-block""  onclick='$(this).fadeOut()'>
-                        <h4>Notice</h4>
+                <div class=""col-md-12"" id=""testId"">
+                    <div class=""alert alert-success alert-block""  onclick='$(this).slideUp()'>
+                        <strong>Notice -</strong>
                         This is a flashmessage
                     </div>
-                    <div class=""alert alert-danger alert-block""  onclick='$(this).fadeOut()'>
-                        <h4>Another notice</h4>
+                    <div class=""alert alert-danger alert-block""  onclick='$(this).slideUp()'>
+                        <strong>Another notice -</strong>
                         This is a another flashmessage
                     </div>
                 </div>";
@@ -116,7 +116,7 @@ namespace Tests.Unit.Infrastructure.HtmlHelpers
         {
             var flashMessage = Html.FlashMessage("testId");
 
-            Assert.AreEqual("<div id='testId'></div>", flashMessage.ToHtmlString());
+            Assert.AreEqual("<div class=\"col-md-12\" id='testId'></div>", flashMessage.ToHtmlString());
         }
     }
 }
