@@ -21,7 +21,7 @@ namespace WindowsService.MailSender
                 });
 
                 // http://4sysops.com/archives/service-account-best-practices-part-1-choosing-a-service-account/
-                x.RunAsLocalService();
+                x.RunAsLocalSystem();
 
                 x.SetServiceName(applicationSettings.WindowsServiceMailSenderName);
                 x.SetDisplayName(applicationSettings.WindowsServiceMailSenderName);
