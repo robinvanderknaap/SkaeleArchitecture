@@ -177,7 +177,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <Content Include="Unit\Infrastructure\TemplateMailMessages\ExpectedResults\CustomMailHtmlResult.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -1,59 +1,34 @@
-using System;
-using System.Linq;
-using System.Reflection;
-using System.ServiceProcess;
 using Infrastructure.ApplicationSettings;
-using MassTransit;
-using WindowsService.MailSender.WindowsServiceManagers;
+using Topshelf;
 
 namespace WindowsService.MailSender
 {
-    static class Program
+    public class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        private static void Main(string[] arguments)
+        public static void Main()
         {
-            if (arguments.Any())
-            {
-                new WindowsServiceManager(new ApplicationSettings())
-                    .ExecuteCommand(arguments.First());
-            }
-            else
-            {
-                RunServices(arguments);
-            }
-        }
+            var applicationSettings = new ApplicationSettings();
 
-        private static void RunServices(string[] arguments)
-        {
-            var servicesToRun = new ServiceBase[]
+            // Use topshelf for installing and activating the Windows service
+            // http://topshelf-project.com/
+            HostFactory.Run(x =>                                 
+            {
+                x.Service<MailSenderService>(s =>                       
                 {
-                    new MailSenderService()
-                };
+                    s.ConstructUsing(name => new MailSenderService());    
+                    s.WhenStarted(tc => tc.Start());              
+                    s.WhenStopped(tc => tc.Stop());               
+                });
 
-            if (Environment.UserInteractive)
-            {
-                var onStartMethodInfo = typeof(ServiceBase).GetMethod("OnStart", BindingFlags.Instance | BindingFlags.NonPublic);
+                // http://4sysops.com/archives/service-account-best-practices-part-1-choosing-a-service-account/
+                x.RunAsLocalService();
 
-                foreach (var service in servicesToRun)
-                {
-                    onStartMethodInfo.Invoke(service, new object[] { arguments });
-                }
+                x.SetServiceName(applicationSettings.WindowsServiceMailSenderName);
+                x.SetDisplayName(applicationSettings.WindowsServiceMailSenderName);
+                x.SetDescription("Service for sending email");
 
-                Console.WriteLine("Press any key to exit");
-                Console.Read();
-
-                foreach (var service in servicesToRun)
-                {
-                    service.Stop();
-                }
-            }
-            else
-            {
-                ServiceBase.Run(servicesToRun);
-            }
+                x.EnableServiceRecovery(rc => rc.RestartService(1));
+            });                                               
         }
     }
 }

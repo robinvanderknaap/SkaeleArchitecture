@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using System.ServiceProcess;
 using Autofac;
 using Data;
 using Data.Utils;
@@ -20,26 +19,24 @@ using RazorMailMessage.TemplateResolvers;
 
 namespace WindowsService.MailSender
 {
-    public partial class MailSenderService : ServiceBase
+    public class MailSenderService
     {
         private readonly IContainer _container;
         private IServiceBus _bus;
 
         public MailSenderService()
         {
-            InitializeComponent();
-
             NHibernateProfiler.Initialize();
 
             _container = BuildContainer();
         }
 
-        protected override void OnStart(string[] args)
+        public void Start()
         {
             _bus = _container.Resolve<IServiceBus>();
         }
 
-        protected override void OnStop()
+        public void Stop()
         {
             _bus.Dispose();
         }
