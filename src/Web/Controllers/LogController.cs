@@ -28,7 +28,7 @@ namespace Web.Controllers
             return Json(new{});
         }
 
-        public ActionResult GetLogGridItem(GridSettings gridSettings)
+        public ActionResult GetLogGridItems(GridSettings gridSettings)
         {
             var logGridItems = _logRepository.GetLogItems(gridSettings);
             var totalLogGridItems = _logRepository.CountLogItems(gridSettings);

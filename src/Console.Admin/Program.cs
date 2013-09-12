@@ -96,6 +96,9 @@ namespace Console.Admin
             PocoGenerator.CreateTranslations(translationsRepository);
 
             session.Transaction.Commit();
+
+            // Create logitems
+            PocoGenerator.CreateLogItems(new NLogLogger(applicationSettings, "Console.Admin"));
         }
 
         private static void LogTest()

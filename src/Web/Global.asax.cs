@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Autofac;
 using Data.Utils;
 using Domain.AbstractRepository;
+using HibernatingRhinos.Profiler.Appender.NHibernate;
 using Infrastructure.Loggers;
 using NHibernate;
 using Web.App_Start;
@@ -22,7 +23,9 @@ namespace Web
         {
             // Initiate NHibernate session factory, this should be done once for every application start.
             // Creating a session factory is an time-consuming operation (all mapping files are processed for example)
-            SessionFactory = NHibernateHelper.SessionFactory; 
+            SessionFactory = NHibernateHelper.SessionFactory;
+
+            NHibernateProfiler.Initialize();
 
             AreaRegistration.RegisterAllAreas();
 

@@ -38,7 +38,7 @@ namespace Data
                 .AddScalar("Stacktrace", NHibernateUtil.String)
                 .AddScalar("Exception", NHibernateUtil.String)
                 .SetResultTransformer(Transformers.AliasToBean(typeof(LogItem)))
-                .SetFirstResult((gridSettings.PageIndex) * gridSettings.PageSize)
+                .SetFirstResult((gridSettings.PageIndex - 1) * gridSettings.PageSize)
                 .SetMaxResults(gridSettings.PageSize)
                 .List<LogItem>();
         }
@@ -72,8 +72,8 @@ namespace Data
 	                Exception"
                 )
                 .From("Log")
-                .AddSearchRule(new WhereSearchRule {Field = "Id", Statement = "Id = {0}"})
-                .AddSearchRule(new WhereSearchRule { Field = "Created", Statement = "Created = {0}", Action = s => DateTime.Parse(s) })
+                .AddSearchRule(new WhereSearchRule { Field = "Id", Statement = "cast(Id as varchar(50)) like {0}", Action = s => "%" + s + "%" })
+                .AddSearchRule(new WhereSearchRule { Field = "Created", Statement = "date_trunc('day', Created) = {0}", Action = s => DateTime.Parse(s) })
                 .AddSearchRule(new WhereSearchRule { Field = "Level", Statement = "Level = {0}" })
                 .AddSearchRule(new WhereSearchRule { Field = "Username", Statement = "Username like {0}", Action = s => "%" + s + "%" })
                 .AddSearchRule(new WhereSearchRule { Field = "Message", Statement = "Message like {0}", Action = s => "%" + s + "%" })

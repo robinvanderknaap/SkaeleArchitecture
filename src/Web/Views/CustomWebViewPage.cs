@@ -1,12 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System.Globalization;
+using System.Web.Mvc;
 using Infrastructure.ApplicationSettings;
 using Infrastructure.Translations;
+using Web.Cultures;
 
 namespace Web.Views
 {
     /// <summary>
     /// Custom web view page
-    /// Adds CultureService, LocalizationService and Localize to the views
+    /// Adds extra methods and properties to the views
     /// </summary>
     /// <typeparam name="TModel">dynamic</typeparam>
     public abstract class CustomWebViewPage<TModel> : WebViewPage<TModel>
@@ -26,6 +28,11 @@ namespace Web.Views
         public ITranslationService TranslationService
         {
             get { return _translationService ?? (_translationService = Resolve<ITranslationService>()); }
+        }
+
+        public CultureInfo CurrentCulture
+        {
+            get { return Resolve<ICultureService>().GetCulture(); }
         }
 
         // Shortcut to resolver

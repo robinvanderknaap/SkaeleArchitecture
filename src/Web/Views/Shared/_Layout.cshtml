@@ -15,8 +15,10 @@
             <script src="~/Public/Js/Bootstrap/html5shiv.js"></script>
             <script src="~/Public/Js/Bootstrap/respond.min.js"></script>
         <![endif]-->
-      
+        
         @Scripts.Render("~/Bundle/Js")
+
+        <script src="~/Public/Js/JqGrid/i18n/grid.locale-@(CurrentCulture.TwoLetterISOLanguageName).js"></script>
     </head>
     <body>
         @if (IsSectionDefined("MainMenu"))

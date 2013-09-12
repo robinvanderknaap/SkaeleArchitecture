@@ -66,6 +66,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DemoData\PocoGenerator.cs" />
+    <Compile Include="DemoData\PocoLogItem.cs" />
     <Compile Include="DemoData\PocoUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

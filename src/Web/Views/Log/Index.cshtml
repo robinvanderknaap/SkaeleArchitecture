@@ -1,38 +1,56 @@
 ﻿@section Title { Log }
 
 @using MvcJqGrid.DataReaders
+@using MvcJqGrid.Enums
+
+
 <div class="row">
-    <div class="span12">
-        <div class="widget">
-            <div class="widget-header">
-                <i class="icon-book"></i>
-                <h3>Log</h3>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="icon-book"></i>@T.Log
             </div>
-            <div class="widget-content" style="padding:0">
+            <div id="gridContainer" class="panel-body">
                 @(Html.Grid("logGrid")
-                    .AddColumn(new Column("Id")
-                        .SetWidth(220)
-                        .SetFixedWidth(true))
-                    .AddColumn(new Column("Created")
-                        .SetWidth(120)
-                        .SetFixedWidth(true))
-                    .AddColumn(new Column("Level")
-                        .SetWidth(60)
-                        .SetFixedWidth(true))
-                    .AddColumn(new Column("Username")
-                        .SetWidth(220)
-                        .SetFixedWidth(true))
-                    .AddColumn(new Column("Message"))
-                    .SetUrl(Url.Action("GetLogGridItem"))
-                    .SetJsonReader(new JsonReader { Id = "Id" })
-                    .SetAutoWidth(true)
-                    .SetVirtualScroll(true)
-                    .SetRowNum(30)
-                    .SetViewRecords(true)
-                    .SetSearchToolbar(true)
-                    .SetSearchOnEnter(false)
-                )
+                      .AddColumn(new Column("Id")
+                                     .SetWidth(250)
+                                     .SetFixedWidth(true))
+                      .AddColumn(new Column("Created")
+                                     .SetSearchType(Searchtype.Datepicker)
+                                     .SetWidth(120)
+                                     .SetFixedWidth(true))
+                      .AddColumn(new Column("Level")
+                                     .SetSearchType(Searchtype.Select)
+                                     .SetSearchTerms(new [] {"Debug", "Info", "Warn", "Error", "Fatal"})
+                                     .SetWidth(80)
+                                     .SetFixedWidth(true))
+                      .AddColumn(new Column("Username")
+                                     .SetWidth(220)
+                                     .SetFixedWidth(true))
+                      .AddColumn(new Column("Message"))
+                      .SetUrl(Url.Action("GetLogGridItems"))
+                      .SetJsonReader(new JsonReader { Id = "Id" })
+                      .SetAutoWidth(true)
+                      .SetVirtualScroll(true)
+                      .SetRowNum(50)
+                      .SetAltClass("jqgridAlternateRow")
+                      .SetAltRows(true)
+                      .SetViewRecords(true)
+                      .SetSearchToolbar(true)
+                      .SetSearchOnEnter(false))
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $("#logGrid").jqGrid('setGridHeight', $(window).height() - 280);
+        
+        // http://stackoverflow.com/a/1633086/426840
+        $(window).bind('resize', function () {
+            $("#logGrid").setGridWidth($('#gridContainer').width(), true);
+            $("#logGrid").jqGrid('setGridHeight', $(window).height() - 280);
+        }).trigger('resize');
+    });
+</script>

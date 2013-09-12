@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using AutoPoco;
 using AutoPoco.DataSources;
@@ -6,6 +7,7 @@ using AutoPoco.Engine;
 using Data;
 using Domain.Users;
 using Infrastructure.ApplicationSettings;
+using Infrastructure.Loggers;
 using Infrastructure.Translations;
 
 namespace Console.Admin.DemoData
@@ -31,6 +33,11 @@ namespace Console.Admin.DemoData
                     .Setup(u => u.Email).Use<ExtendedEmailAddressSource>("skaele.nl")
                     .Setup(u => u.DisplayName).Use<FirstNameSource>()
                     .Setup(u => u.IsActive).Use<BooleanSource>();
+
+                x.Include<PocoLogItem>()
+                    .Setup(l => l.LogLevel).Use<EnumSource<LogLevel>>()
+                    .Setup(l => l.Message).Use<RandomStringSource>(30, 50)
+                    .Setup(l => l.Message).Use<RandomStringSource>(60, 90);
             });
         }
 
@@ -162,6 +169,31 @@ namespace Console.Admin.DemoData
             translations.ForEach(translationsRepository.Save);
 
             return translations;
+        }
+
+        public static void CreateLogItems(ILogger logger)
+        {
+            foreach (var pocoLogItem in Session.List<PocoLogItem>(100).Get())
+            {
+                switch (pocoLogItem.LogLevel)
+                {
+                    case LogLevel.Debug:
+                        logger.Debug(pocoLogItem.Message, pocoLogItem.Details);
+                        break;
+                    case LogLevel.Info:
+                        logger.Info(pocoLogItem.Message, pocoLogItem.Details);
+                        break;
+                    case LogLevel.Warning:
+                        logger.Warn(pocoLogItem.Message, pocoLogItem.Details);
+                        break;
+                    case LogLevel.Error:
+                        logger.Error(pocoLogItem.Message, pocoLogItem.Details);
+                        break;
+                    case LogLevel.Fatal:
+                        logger.Fatal(pocoLogItem.Message, new Exception(pocoLogItem.Details));
+                        break;
+                }
+            }
         }
     }
 }
