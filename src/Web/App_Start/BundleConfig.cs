@@ -11,7 +11,7 @@ namespace Web.App_Start
             // http://forums.asp.net/post/5012037.aspx
 
             bundles.Add(
-                new StyleBundle("~/Bundle/Css")
+                new StyleBundle("~/Bundle/Public/Css")
                 .Include(
                     "~/Public/Css/FontAwesome/font-awesome.min.css",
                     "~/Public/Css/Bootstrap/bootstrap.min.css",
@@ -23,7 +23,7 @@ namespace Web.App_Start
             );
 
             bundles.Add(
-                new ScriptBundle("~/Bundle/Js")
+                new ScriptBundle("~/Bundle/Public/Js")
                 .Include(
                     "~/Themes/Default/Js/dummyConsole.js",
                     "~/Public/Js/Bootstrap/bootstrap.min.js",

@@ -25,7 +25,7 @@
 @media (min-width: 992px) {
     .jumbotron {
         display: inherit;
-        background-image: url(../Images/chuck.jpg);
+        background-image: url(/Public/Images/chuck.jpg);
         background-repeat: no-repeat;
         background-position: right bottom;
     }
