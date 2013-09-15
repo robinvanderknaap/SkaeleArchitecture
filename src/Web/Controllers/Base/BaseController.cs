@@ -19,5 +19,17 @@ namespace Web.Controllers.Base
             ViewData["flashMessage"] = _flashMessages;
             TempData["flashMessage"] = _flashMessages;
         }
+
+        /// <summary>
+        /// Adds flashmessage to page in specified container
+        /// </summary>
+        /// <remarks>Mulitple flashmessages can be added to the page using this method</remarks>
+        protected void AddFlashMessage(string title, string message, FlashMessageType flashMessageType, string containerId)
+        {
+            _flashMessages.Add(new FlashMessage(title, message, flashMessageType, containerId));
+
+            ViewData["flashMessage"] = _flashMessages;
+            TempData["flashMessage"] = _flashMessages;
+        }
     }
 }

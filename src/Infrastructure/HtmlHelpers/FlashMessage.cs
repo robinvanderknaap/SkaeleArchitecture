@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Infrastructure.FlashMessages;
@@ -29,42 +30,72 @@ namespace Infrastructure.HtmlHelpers
             container.Attributes.Add("id", id);
             container.AddCssClass("col-md-12");
             
-            // Add flashmessages to container
-            foreach(var flashMessage in flashMessages)
-            {
-                // Default to info css class
-                var cssClass = "message-info";
+            var generalFlashMessages = flashMessages.Where(x => string.IsNullOrWhiteSpace(x.ContainerId)).ToList();
+            var inlineFlashMessages = flashMessages.Where(x => !string.IsNullOrWhiteSpace(x.ContainerId)).ToList();
 
-                // Determine class name based on message type
-                switch (flashMessage.Type)
-                {
-                    case FlashMessageType.Info:
-                        cssClass = "alert alert-info alert-block";
-                        break;
-                    case FlashMessageType.Success:
-                        cssClass = "alert alert-success alert-block";
-                        break;
-                    case FlashMessageType.Warning:
-                        cssClass = "alert alert-block";
-                        break;
-                    case FlashMessageType.Error:
-                        cssClass = "alert alert-danger alert-block";
-                        break;
-                }
-                
-                const string flashMessageTemplate = @"
-                    <div class=""{0}""  onclick='$(this).slideUp()'>{1}{2}</div>                     
-                ";
+            // Add flashmessages to container
+            foreach(var flashMessage in generalFlashMessages)
+            {
+                const string flashMessageTemplate = @"<div class=""{0}""  onclick='$(this).slideUp()'>{1}{2}</div>";
                 
                 // Add flashmessage to container
-                container.InnerHtml += string.Format(flashMessageTemplate,
-                    cssClass,
+                container.InnerHtml += string.Format(
+                    flashMessageTemplate,
+                    GetCssClass(flashMessage),
                     string.IsNullOrWhiteSpace(flashMessage.Title) ? string.Empty : "<strong>" + flashMessage.Title + " - </strong>",
                     flashMessage.Message
                 );
             }
 
-            return new HtmlString(container.ToString());
+            var scriptTemplate = "";
+
+            if (inlineFlashMessages.Any())
+            {
+                var flashMessageTemplates = new List<string>();
+                
+                foreach (var flashMessage in inlineFlashMessages)
+                {
+                    const string flashMessageTemplate = @"$('#{0}').append('<div class=""{1}"" onclick=""$(this).slideUp()"">{2}{3}</div>');";
+
+                    flashMessageTemplates.Add(string.Format(
+                        flashMessageTemplate,
+                        flashMessage.ContainerId,
+                        GetCssClass(flashMessage),
+                        string.IsNullOrWhiteSpace(flashMessage.Title)
+                            ? string.Empty
+                            : "<strong>" + flashMessage.Title + " - </strong>",
+                        flashMessage.Message
+                    ));
+                }
+
+                scriptTemplate = string.Format(@"<script type=""text/javascript"">$(function(){{ {0} }});</script>", string.Join("", flashMessageTemplates));
+            }
+
+            return new HtmlString(container + scriptTemplate);
+        }
+
+        private static string GetCssClass(FlashMessage flashMessage)
+        {
+            // Default to info css class
+            var cssClass = "message-info";
+
+            // Determine class name based on message type
+            switch (flashMessage.Type)
+            {
+                case FlashMessageType.Info:
+                    cssClass = "alert alert-info alert-block";
+                    break;
+                case FlashMessageType.Success:
+                    cssClass = "alert alert-success alert-block";
+                    break;
+                case FlashMessageType.Warning:
+                    cssClass = "alert alert-block";
+                    break;
+                case FlashMessageType.Error:
+                    cssClass = "alert alert-danger alert-block";
+                    break;
+            }
+            return cssClass;
         }
     }
 }

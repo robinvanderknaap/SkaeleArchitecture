@@ -11,7 +11,7 @@
             <div class="panel-body">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon-search"></i></span>
-                    <input type="text" class="form-control"/>
+                    <input id="search" type="text" class="form-control"/>
                 </div>
                 @foreach (var userViewModel in Model.UserViewModels)
                 {
@@ -31,13 +31,43 @@
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="icon-user"></i>@T.User
+                <i class="icon-user"></i>@T.Users
             </div>
             <div class="panel-body">
-                <h4>No user selected</h4>
-                <p>Select a user to view details</p>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon-search"></i></span>
+                    <input type="text" class="form-control"/>
+                </div>
+                <div style="margin-top:15px;" id="gridContainer"></div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script type="text/html" id="gridCellLayout">
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img class="media-object" src="http://www.gravatar.com/avatar/dd39bbf0199be2c066ca08b3619c0ffd?s=60" alt="" />
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">{{name}}</h4>
+            Administrator, User | {{email}}
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    
+    var options = {
+        urls: {
+            GetUsers: '@Url.Action("GetUsers")'
+        },
+        templates: {
+            GridCellLayout: $('#gridCellLayout').html()
+        }
+    };
+
+    var usersController = new UsersController(options);
+</script>
 

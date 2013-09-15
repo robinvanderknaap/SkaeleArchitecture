@@ -16,6 +16,8 @@ namespace Web.App_Start
                     "~/Public/Css/FontAwesome/font-awesome.min.css",
                     "~/Public/Css/Bootstrap/bootstrap.min.css",
                     "~/Public/Css/Jquery.Ui/jquery-ui-1.10.3.custom.min.css",
+                    "~/Public/Css/SlickGrid/slick.grid.css",
+                    "~/Public/Css/SlickGrid/slick.grid.custom.css",
                     "~/Public/Css/JqGrid/ui.jqgrid.css",
                     "~/Public/Css/JqGrid/ui.jqgrid.custom.css",
                     "~/Public/Css/main.css"
@@ -31,12 +33,17 @@ namespace Web.App_Start
                     "~/Public/Js/Jquery.Ui/jquery-ui-1.10.3.custom.min.js",
                     "~/Public/Js/Jquery.Validate/jquery.validate.min.js",
                     "~/Public/Js/Jquery.Validate/jquery.validate.unobtrusive.min.js",
+                    "~/Public/Js/Mustache/mustache.js",
+                    "~/Public/Js/SlickGrid/jquery.event.drag-2.2.js",
+                    "~/Public/Js/SlickGrid/slick.core.js",
+                    "~/Public/Js/SlickGrid/slick.grid.js",
                     "~/Public/Js/JqGrid/JqGrid/i18n/grid.locale-nl.js",
                     "~/Public/Js/JqGrid/jquery.jqGrid.min.js",
                     "~/Public/Js/Jquery.Form/jquery.form.js",
                     "~/Public/Js/defaultAjaxForm.js",
                     "~/Public/Js/flashMessage.js",
-                    "~/Public/Js/main.js"
+                    "~/Public/Js/main.js",
+                    "~/Public/Js/usersController.js"
                 )
             );
 

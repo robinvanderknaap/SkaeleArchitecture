@@ -50,6 +50,7 @@ namespace Web.Controllers
         public ActionResult FlashMessages()
         {
             AddFlashMessage("Success", "This is a server side success message", FlashMessageType.Success);
+            AddFlashMessage("Success", "This is a server side success inline message", FlashMessageType.Success, "inlineContainer");
             return View();
         }
 

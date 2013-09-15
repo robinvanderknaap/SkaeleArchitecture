@@ -11,6 +11,10 @@
 .input-validation-error {
     background-color:#f2dede!important;
 }
+.media-body {
+    font-size: 14px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 .navbar-inverse .navbar-brand:hover {
     color: #999;
 }
