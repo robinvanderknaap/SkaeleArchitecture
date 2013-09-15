@@ -63,8 +63,8 @@ namespace Infrastructure.HtmlHelpers
                         GetCssClass(flashMessage),
                         string.IsNullOrWhiteSpace(flashMessage.Title)
                             ? string.Empty
-                            : "<strong>" + flashMessage.Title + " - </strong>",
-                        flashMessage.Message
+                            : "<strong>" + flashMessage.Title + " - </strong>".Replace("'", "&lsquo;"),
+                        flashMessage.Message.Replace("'", "&lsquo;")
                     ));
                 }
 

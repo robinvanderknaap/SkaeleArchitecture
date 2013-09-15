@@ -55,7 +55,7 @@ namespace Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.LoginErrorMessage = _translationService.Translate.EmailAndPasswordCombinationNotValid;
+            AddFlashMessage(null, _translationService.Translate.EmailAndPasswordCombinationNotValid, FlashMessageType.Error, "messageContainer");
 
             return View(loginViewModel);
         }
@@ -73,7 +73,7 @@ namespace Web.Controllers
 
             if (user == null)
             {
-                ViewBag.ErrorMessage = string.Format(_translationService.Translate.UserWithEmailAddressWasNotFound, resetPasswordViewModel.Email);
+                AddFlashMessage(null, string.Format(_translationService.Translate.UserWithEmailAddressWasNotFound, resetPasswordViewModel.Email), FlashMessageType.Success, "messageContainer");
                 return View(resetPasswordViewModel);
             }
 
@@ -81,7 +81,7 @@ namespace Web.Controllers
 
             _bus.Publish(new ResetPasswordRequestMessage { DisplayName = user.DisplayName, Email = user.Email, ResetPasswordUrl = resetPasswordUrl, CultureInfo = user.Culture});
 
-            AddFlashMessage(_translationService.Translate.Success, _translationService.Translate.AnEmailWasSendToYourEmailaddressWithInstructionsOnHowToResetYourPassword, FlashMessageType.Success);
+            AddFlashMessage(null, _translationService.Translate.AnEmailWasSendToYourEmailaddressWithInstructionsOnHowToResetYourPassword, FlashMessageType.Success, "messageContainer");
 
             return RedirectToAction("Index");
         }
@@ -114,13 +114,13 @@ namespace Web.Controllers
 
             if (!_passwordPolicy.Validate(changePasswordViewModel.Password))
             {
-                AddFlashMessage(null, _translationService.Translate.PasswordShouldContainAtLeast5Characters, FlashMessageType.Error);
+                AddFlashMessage(null, _translationService.Translate.PasswordShouldContainAtLeast5Characters, FlashMessageType.Error, "messageContainer");
                 return View(changePasswordViewModel);
             }
 
             _userRepository.ChangePassword(user, changePasswordViewModel.Password);
 
-            AddFlashMessage(_translationService.Translate.Success, _translationService.Translate.YourPasswordWasChangedSuccessfully, FlashMessageType.Success);
+            AddFlashMessage(null, _translationService.Translate.YourPasswordWasChangedSuccessfully, FlashMessageType.Success, "messageContainer");
 
             return RedirectToAction("Index");
         }
