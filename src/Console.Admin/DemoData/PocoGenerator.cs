@@ -122,6 +122,7 @@ namespace Console.Admin.DemoData
                 new Translation("PasswordShouldContainAtLeast5Characters", "Password should contain at least 5 characters", english),
                 new Translation("ClientSideFlashMessages", "Client side flash messages", english),
                 new Translation("InlineClientSideFlashMessages", "Inline client side flash messages", english),
+                new Translation("EmailSuccessfullySend", "Email successfully send", english),
                 
                 // nl-NL
                 new Translation("Login", "Inloggen", dutch),
@@ -163,7 +164,8 @@ namespace Console.Admin.DemoData
                 new Translation("MorePages", "Meer pagina's", dutch),
                 new Translation("PasswordShouldContainAtLeast5Characters", "Wachtwoord dient minimaal 5 tekens te bevatten", dutch),
                 new Translation("ClientSideFlashMessages", "Client side flash berichten", dutch),
-                new Translation("InlineClientSideFlashMessages", "Inline client side flash berichten", dutch)
+                new Translation("InlineClientSideFlashMessages", "Inline client side flash berichten", dutch),
+                new Translation("EmailSuccessfullySend", "Email succesvol verzonden", dutch),
             };
 
             translations.ForEach(translationsRepository.Save);

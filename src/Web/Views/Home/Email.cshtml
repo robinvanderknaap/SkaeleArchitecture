@@ -17,33 +17,33 @@
                         @Html.LabelFor(x => x.To, new { @class = "control-label col-md-1" })
                         <div class="input-group col-md-10">
                             <span class="input-group-addon">@@</span>
-                            @Html.TextBoxFor(x => x.To, new { @class = "form-control", data_val = "true", data_val_required = "Required", data_val_email = "Invalid email address" })
-                            @Html.ValidationMessageFor(x => x.To)
+                            @Html.TextBoxFor(x => x.To, new { @class = "form-control", data_val = "true", data_val_required = T.Required, data_val_email = T.InvalidEmailAddress })
                         </div>
+                        <div class="col-md-10 col-md-offset-1">@Html.ValidationMessageFor(x => x.To)</div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(x => x.Cc, new { @class = "control-label col-md-1" })
                         <div class="input-group col-md-10">
                             <span class="input-group-addon">@@</span>
-                            @Html.TextBoxFor(x => x.Cc, new { @class = "form-control", data_val = "true", data_val_email = "Invalid email address" })
-                            @Html.ValidationMessageFor(x => x.Cc)
+                            @Html.TextBoxFor(x => x.Cc, new { @class = "form-control", data_val = "true", data_val_email = T.InvalidEmailAddress })
                         </div>
+                        <div class="col-md-10 col-md-offset-1">@Html.ValidationMessageFor(x => x.Cc)</div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(x => x.Bcc, new { @class = "control-label col-md-1" })
                         <div class="input-group col-md-10">
                             <span class="input-group-addon">@@</span>
-                            @Html.TextBoxFor(x => x.Bcc, new { @class = "form-control", data_val = "true", data_val_email = "Invalid email address" })
-                            @Html.ValidationMessageFor(x => x.Bcc)
+                            @Html.TextBoxFor(x => x.Bcc, new { @class = "form-control", data_val = "true", data_val_email = T.InvalidEmailAddress })
                         </div>
+                        <div class="col-md-10 col-md-offset-1">@Html.ValidationMessageFor(x => x.Bcc)</div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(x => x.Subject, new { @class = "control-label col-md-1" })
                         <div class="input-group col-md-10">
                             <span class="input-group-addon"><i class="icon-pencil"></i></span>
-                            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", data_val = "true", data_val_required = "Required" })
-                            @Html.ValidationMessageFor(x => x.Subject)
+                            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", data_val = "true", data_val_required = T.Required })
                         </div>
+                        <div class="col-md-10 col-md-offset-1">@Html.ValidationMessageFor(x => x.Subject)</div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(x => x.Body, new { @class = "control-label col-md-1" })
@@ -67,7 +67,7 @@
     $(function () {
         $('.form-horizontal').defaultAjaxForm({
             success: function (data) {
-                AddFlashMessage('Success', data, 'success');
+                AddFlashMessage('', data, 'success');
                 $('.form-horizontal').trigger('reset');
             },
             error: function () {

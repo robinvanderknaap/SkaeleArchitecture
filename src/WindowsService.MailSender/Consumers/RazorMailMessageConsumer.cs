@@ -54,7 +54,7 @@ namespace WindowsService.MailSender.Consumers
             dynamic viewBag = new DynamicViewBag();
             viewBag.Culture = message.CultureInfo;
 
-            var mailMessage = CreateRazorMailMessage
+            MailMessage mailMessage = CreateRazorMailMessage
             (
                 "CustomMail.CustomMailMessage.cshtml",
                 new
@@ -65,7 +65,15 @@ namespace WindowsService.MailSender.Consumers
             );
 
             mailMessage.From = new MailAddress("no-reply@skaele.nl");
-            mailMessage.To.Add(message.Email);
+            mailMessage.To.Add(message.To);
+            if (!string.IsNullOrWhiteSpace(message.Cc))
+            {
+                mailMessage.CC.Add(message.Cc);
+            }
+            if (!string.IsNullOrWhiteSpace(message.Bcc))
+            {
+                mailMessage.Bcc.Add(message.Bcc);
+            }
             mailMessage.Subject = message.Subject;
 
             _mailer.SendMail(mailMessage);

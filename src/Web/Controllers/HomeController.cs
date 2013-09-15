@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Infrastructure.ApplicationSettings;
 using Infrastructure.FlashMessages;
 using Infrastructure.QueueMessages.RazorMailMessages;
+using Infrastructure.Translations;
 using MassTransit;
 using Web.Controllers.Base;
 using Web.Cultures;
@@ -18,16 +19,19 @@ namespace Web.Controllers
         private readonly IApplicationSettings _applicationSettings;
         private readonly ICultureService _cultureService;
         private readonly IServiceBus _serviceBus;
+        private readonly ITranslationService _translationService;
 
         public HomeController(
             IApplicationSettings applicationSettings,
             ICultureService cultureService,
-            IServiceBus serviceBus
+            IServiceBus serviceBus,
+            ITranslationService translationService
         )
         {
             _applicationSettings = applicationSettings;
             _cultureService = cultureService;
             _serviceBus = serviceBus;
+            _translationService = translationService;
         }
 
         public ActionResult Index()
@@ -85,14 +89,16 @@ namespace Web.Controllers
         {
             _serviceBus.Publish(new CustomMailMessage
             {
-                Email = emailViewModel.To,
+                To = emailViewModel.To,
+                Cc = emailViewModel.Cc,
+                Bcc = emailViewModel.Bcc,
                 Body = emailViewModel.Body,
                 CultureInfo = ((Domain.Users.User)User).Culture,
                 Subject = emailViewModel.Subject
             });
 
             //_mailer.SendMail(emailViewModel.MailMessage);
-            return Json("Email sent successfully");
+            return Json(_translationService.Translate.EmailSuccessfullySend);
         }
     }
 }
