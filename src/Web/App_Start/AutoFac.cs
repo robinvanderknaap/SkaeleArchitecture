@@ -38,7 +38,7 @@ namespace Web.App_Start
             
             // Register types
             builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>().SingleInstance();
-            builder.RegisterType<InMemoryKeyValueCache>().As<IKeyValueCache>();
+            builder.RegisterType<InMemoryKeyValueCache>().As<IKeyValueCache>().SingleInstance();
             builder.RegisterType<TranslationRepository>().As<ITranslationRepository>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<LogRepository>().As<ILogRepository>();
