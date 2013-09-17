@@ -21,42 +21,29 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            var users = _userRepository.GetAll().ToList();
-            
-            var userListViewModel = new UserListViewModel
-                {
-                    UserViewModels = users.Select(x => new UserViewModel
-                    {
-                        Email = x.Email,
-                        DisplayName = x.DisplayName,
-                        Roles = x.Roles.Select(y => y.ToString()).ToList(),
-                        IsActive = x.IsActive,
-                        GravatarHash = _encryptor.Md5Encrypt(x.Email).Trim().ToLower()
-                    }).ToList(),
-                    TotalUsers = users.Count()
-                };
-
-            return View(userListViewModel);
+            return View();
         }
 
-        public JsonResult GetUsers()
+        public JsonResult GetUsers(int fromPage, int toPage, int pageSize)
         {
             var users = _userRepository.GetAll().ToList();
+            var selectedUsers = users.Skip(pageSize * fromPage).Take((toPage-fromPage+1)*pageSize).ToList();
+
 
             var userListViewModel = new UserListViewModel
             {
-                UserViewModels = users.Select(x => new UserViewModel
+                UserViewModels = selectedUsers.Select(x => new UserViewModel
                 {
                     Email = x.Email,
                     DisplayName = x.DisplayName,
-                    Roles = x.Roles.Select(y => y.ToString()).ToList(),
+                    Roles = string.Join(",",x.Roles.Select(y => y.ToString()).ToList()),
                     IsActive = x.IsActive,
                     GravatarHash = _encryptor.Md5Encrypt(x.Email).Trim().ToLower()
                 }).ToList(),
                 TotalUsers = users.Count()
             };
 
-            return Json(userListViewModel);
+            return Json(userListViewModel, JsonRequestBehavior.AllowGet);
         }
     }
 }

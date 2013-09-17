@@ -43,7 +43,9 @@ namespace Web.App_Start
                     "~/Public/Js/defaultAjaxForm.js",
                     "~/Public/Js/flashMessage.js",
                     "~/Public/Js/main.js",
-                    "~/Public/Js/usersController.js"
+                    "~/Public/Js/.js",
+                    "~/Public/Js/usersController.js",
+                    "~/Public/Js/usersRemoteModel.js"
                 )
             );
 

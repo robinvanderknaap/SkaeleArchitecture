@@ -210,6 +210,7 @@
     <Content Include="Public\Css\main.css" />
     <Content Include="Public\Js\Bootstrap\html5shiv.js" />
     <Content Include="Public\Js\Bootstrap\respond.min.js" />
+    <Content Include="Public\Js\usersRemoteModel.js" />
     <Content Include="Public\Js\usersController.js" />
     <Content Include="Public\Js\defaultAjaxForm.js" />
     <Content Include="Public\Js\dummyConsole.js" />

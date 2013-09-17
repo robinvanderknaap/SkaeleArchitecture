@@ -1,33 +1,6 @@
-﻿@model Web.ViewModels.User.UserListViewModel
-
-@section Title { Users }
+﻿@section Title { Users }
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="icon-user"></i>@T.Users
-            </div>
-            <div class="panel-body">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icon-search"></i></span>
-                    <input id="search" type="text" class="form-control"/>
-                </div>
-                @foreach (var userViewModel in Model.UserViewModels)
-                {
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="http://www.gravatar.com/avatar/@userViewModel.GravatarHash?s=60" alt=""/>
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">@userViewModel.DisplayName</h4>
-                            Administrator, User | @userViewModel.Email
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -48,11 +21,11 @@
 <script type="text/html" id="gridCellLayout">
     <div class="media">
         <a class="pull-left" href="#">
-            <img class="media-object" src="http://www.gravatar.com/avatar/dd39bbf0199be2c066ca08b3619c0ffd?s=60" alt="" />
+            <img class="media-object" src="http://www.gravatar.com/avatar/{{GravatarHash}}?s=60" alt="" />
         </a>
         <div class="media-body">
-            <h4 class="media-heading">{{name}}</h4>
-            Administrator, User | {{email}}
+            <h4 class="media-heading">{{DisplayName}}</h4>
+            {{Roles}} | {{Email}}
         </div>
     </div>
 </script>
@@ -68,6 +41,6 @@
         }
     };
 
-    var usersController = new UsersController(options);
+    var usersController = new UsersController(new UsersRemoteModel(), options);
 </script>
 

@@ -48,6 +48,7 @@ namespace Console.Admin.DemoData
             foreach (var pocoUser in Session.List<PocoUser>(100).Get())
             {
                 var user = new User(pocoUser.Email, pocoUser.DisplayName, new CultureInfo("nl-NL"), userRepository, new ApplicationSettings());
+                user.Roles.Add(Role.User);
                 userRepository.Create(user, "secret");
                 users.Add(user);
             }
@@ -60,14 +61,17 @@ namespace Console.Admin.DemoData
             var users = new List<User>();
             
             var robin = new User("robin@webpirates.nl", "Robin van der Knaap", new CultureInfo("nl-NL"), userRepository, new ApplicationSettings());
+            robin.Roles.Add(Role.Administrator);
             userRepository.Create(robin, "secret");
             users.Add(robin);
 
             var daan = new User("daan@webpirates.nl", "Daan le Duc", new CultureInfo("nl-NL"), userRepository, new ApplicationSettings());
+            daan.Roles.Add(Role.Administrator);
             userRepository.Create(daan, "secret");
             users.Add(daan);
 
             var johan = new User("jvdvleuten@gmail.com", "Johan van der Vleuten", new CultureInfo("nl-NL"), userRepository, new ApplicationSettings());
+            johan.Roles.Add(Role.Administrator);
             userRepository.Create(johan, "secret");
             users.Add(johan);
 
