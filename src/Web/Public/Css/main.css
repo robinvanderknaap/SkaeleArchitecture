@@ -78,3 +78,24 @@
     position:absolute;
     top: 50%;
 }
+#userContainer {
+    overflow: auto;
+    margin-top: 15px;
+}
+#userContainer .media {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+#userContainer .media:hover {
+    cursor: pointer;
+}
+#userContainer a {
+    color: #333;
+}
+#userContainer a .media-object{
+    margin-right: 10px;
+}
+#userContainer a .media-body{
+    margin-top: 5px;
+}

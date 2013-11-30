@@ -173,13 +173,14 @@
     <Compile Include="ViewModels\Login\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="ViewModels\Login\ResetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\User\UserListViewModel.cs" />
-    <Compile Include="ViewModels\User\UserViewModel.cs" />
+    <Compile Include="ViewModels\User\DisplayUserViewModel.cs" />
+    <Compile Include="ViewModels\User\UpdateUserViewModel.cs" />
     <Compile Include="Views\CustomWebViewPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Public\Css\BootstrapSwitch\bootstrap-switch.css" />
     <Content Include="Public\Css\Bootstrap\bootstrap.min.css" />
     <Content Include="Public\Css\FontAwesome\font-awesome.min.css" />
     <Content Include="Public\Css\JqGrid\ui.jqgrid.css" />
@@ -199,19 +200,20 @@
     <Content Include="Public\Css\Jquery.Ui\images\ui-icons_888888_256x240.png" />
     <Content Include="Public\Css\Jquery.Ui\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Public\Css\Jquery.Ui\jquery-ui-1.10.3.custom.min.css" />
-    <Content Include="Public\Css\SlickGrid\slick.grid.custom.css" />
-    <Content Include="Public\Css\SlickGrid\slick.grid.css" />
     <Content Include="Public\Font\FontAwesome\fontawesome-webfont.svg" />
     <Content Include="Public\Images\ajax-loader.gif" />
     <Content Include="Public\Images\blocks.png" />
     <Content Include="Public\Images\chuck.jpg" />
     <Content Include="Public\Images\favicon.ico" />
+    <Content Include="Public\Js\Angular\angular-route.min.js" />
+    <Content Include="Public\Js\Angular\angular.min.js" />
+    <Content Include="Public\Js\BootstrapSwitch\bootstrap-switch.min.js" />
     <Content Include="Public\Js\Bootstrap\bootstrap.min.js" />
     <Content Include="Public\Css\main.css" />
     <Content Include="Public\Js\Bootstrap\html5shiv.js" />
     <Content Include="Public\Js\Bootstrap\respond.min.js" />
-    <Content Include="Public\Js\usersRemoteModel.js" />
-    <Content Include="Public\Js\usersController.js" />
+    <Content Include="Public\Js\Modules\User\app.js" />
+    <Content Include="Public\Js\Modules\User\userControllers.js" />
     <Content Include="Public\Js\defaultAjaxForm.js" />
     <Content Include="Public\Js\dummyConsole.js" />
     <Content Include="Public\Js\flashMessage.js" />
@@ -224,10 +226,6 @@
     <Content Include="Public\Js\Jquery.Validate\jquery.validate.unobtrusive.min.js" />
     <Content Include="Public\Js\Jquery\jquery-2.0.3.min.js" />
     <Content Include="Public\Js\main.js" />
-    <Content Include="Public\Js\Mustache\mustache.js" />
-    <Content Include="Public\Js\SlickGrid\jquery.event.drag-2.2.js" />
-    <Content Include="Public\Js\SlickGrid\slick.core.js" />
-    <Content Include="Public\Js\SlickGrid\slick.grid.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -289,6 +287,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\MainMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Partials\UserList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Partials\UserDetail.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -123,7 +123,6 @@
     <Compile Include="Unit\Infrastructure\Cache\InMemoryKeyValueCacheTests.cs" />
     <Compile Include="Unit\Infrastructure\Encryption\DefaultEncryptorTests.cs" />
     <Compile Include="Unit\Infrastructure\ExtensionMethods\TimeSpanExtensionsTests.cs" />
-    <Compile Include="Unit\Infrastructure\FilterAttributes\UnitOfWorkFilterTests.cs" />
     <Compile Include="Unit\Infrastructure\FlashMessages\FlashMessageTests.cs" />
     <Compile Include="Unit\Infrastructure\HtmlHelpers\FlashMessageHelperTests.cs" />
     <Compile Include="Unit\Infrastructure\HtmlHelpers\FocusHelperTests.cs" />

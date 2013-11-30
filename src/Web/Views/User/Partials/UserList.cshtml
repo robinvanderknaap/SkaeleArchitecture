@@ -1,0 +1,78 @@
+﻿@{
+    var roles = (from object role in Enum.GetValues(typeof (Domain.Users.Role)) select new KeyValuePair<int, string>((int) role, role.ToString())).ToList();
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="icon-user"></i>@T.Users
+            </div>
+            <div class="panel-body" style="">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon-search"></i></span>
+                    <input type="text" class="form-control" ng-model="search" />
+                </div>
+                <div id="userContainer">
+                    <a ng-repeat="user in users | filter:search">
+                        <div class="media col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+                            <img class="media-object pull-left" src="http://www.gravatar.com/avatar/{{user.GravatarHash}}?s=60" alt="" />
+                            <div class="media-body pull-left">
+                                <div ng-hide="user.editing" ng-click="startEdit(user)">
+                                    <h4 class="media-heading">{{user.DisplayName}}</h4>
+                                    {{user.Roles}} | {{user.Email}}
+                                </div>
+                                <div ng-show="user.editing">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label>Display name</label>
+                                            <input class="form-control" ng-model="user.newDisplayName" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input class="form-control" ng-model="user.newEmail" />
+                                        </div>
+                                        @*<div class="form-group">
+                                            <label>Roles</label>
+                                            @foreach (var role in roles)
+                                            {
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" ng-model="user.SelectedRoleIds[@role.Key]" />
+                                                        @role.Value
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>*@
+                                        <div class="form-group">
+                                            <label>Active</label>
+                                            <input type="checkbox" ng-model="user.newIsActive" ng-checked="user.newIsActive"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <button ng-click="save(user);" class="btn btn-primary">Save</button>
+                                            <button ng-click="user.editing = false" class="btn btn-default">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var resizeUserList = function () {
+        $("#userContainer").height($(window).height() - 255);
+    };
+
+    $(document).ready(function () {
+        $(window).resize(function () {
+            resizeUserList();
+        });
+        resizeUserList();
+    });
+</script>
+

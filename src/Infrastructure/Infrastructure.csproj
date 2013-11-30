@@ -103,6 +103,7 @@
     <Compile Include="DomainBase\DomainSignatureAttribute.cs" />
     <Compile Include="DomainBase\Entity.cs" />
     <Compile Include="DomainBase\IRepository.cs" />
+    <Compile Include="DomainBase\Transaction.cs" />
     <Compile Include="DomainBase\ValidationExtenders.cs" />
     <Compile Include="DomainBase\ValueObject.cs" />
     <Compile Include="Encryption\DefaultEncryptor.cs" />
@@ -111,8 +112,6 @@
     <Compile Include="ExtensionMethods\TimeSpanExtensions.cs" />
     <Compile Include="FilterAttributes\HandleErrorAndLogAttribute.cs" />
     <Compile Include="FilterAttributes\LogActionFilter.cs" />
-    <Compile Include="FilterAttributes\UnitOfWorkAttribute.cs" />
-    <Compile Include="FilterAttributes\UnitOfWorkFilter.cs" />
     <Compile Include="FlashMessages\FlashMessage.cs" />
     <Compile Include="FlashMessages\FlashMessageType.cs" />
     <Compile Include="HtmlHelpers\FlashMessage.cs" />

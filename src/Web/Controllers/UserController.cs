@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Domain.AbstractRepository;
+using Infrastructure.DomainBase;
 using Infrastructure.Encryption;
 using Web.Controllers.Base;
 using Web.ViewModels.User;
@@ -24,26 +26,46 @@ namespace Web.Controllers
             return View();
         }
 
-        public JsonResult GetUsers(int fromPage, int toPage, int pageSize)
+        public ActionResult UserList()
         {
-            var users = _userRepository.GetAll().ToList();
-            var selectedUsers = users.Skip(pageSize * fromPage).Take((toPage-fromPage+1)*pageSize).ToList();
+            return PartialView("Partials/UserList");
+        }
 
+        public ActionResult UserDetail()
+        {
+            return PartialView("Partials/UserDetail");
+        }
 
-            var userListViewModel = new UserListViewModel
+        public JsonResult GetUsers()
+        {
+            var users = _userRepository.GetAll()
+                .Select(x=> new DisplayUserViewModel(x, _encryptor))
+                .OrderBy(u=>u.DisplayName)
+                .ToList();
+
+            return Json(users, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateUser(UpdateUserViewModel userViewModel)
+        {
+            var user = _userRepository.Get(userViewModel.UserId);
+
+            if (user == null)
             {
-                UserViewModels = selectedUsers.Select(x => new UserViewModel
-                {
-                    Email = x.Email,
-                    DisplayName = x.DisplayName,
-                    Roles = string.Join(",",x.Roles.Select(y => y.ToString()).ToList()),
-                    IsActive = x.IsActive,
-                    GravatarHash = _encryptor.Md5Encrypt(x.Email).Trim().ToLower()
-                }).ToList(),
-                TotalUsers = users.Count()
-            };
+                throw new HttpException(500, "User not found");
+            }
+            
+            user.SetEmail(userViewModel.NewEmail, _userRepository);
+            user.DisplayName = userViewModel.NewDisplayName;
 
-            return Json(userListViewModel, JsonRequestBehavior.AllowGet);
+            using (var transaction = new Transaction(_userRepository.Session))
+            {
+                _userRepository.Save(user);
+                transaction.Commit();
+            }
+
+            return Json(new DisplayUserViewModel(user, _encryptor));
         }
     }
 }

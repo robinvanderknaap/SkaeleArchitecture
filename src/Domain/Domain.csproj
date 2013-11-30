@@ -7,8 +7,8 @@
     <ProjectGuid>{DE58EB7B-7C15-419C-B0AC-7A8A8F691813}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>Skaele.Domain</RootNamespace>
+    <AssemblyName>Skaele.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -102,7 +102,6 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        [UnitOfWork]
         public ActionResult ChangePassword(ChangePasswordViewModel changePasswordViewModel)
         {
             var user = _userRepository.Get(changePasswordViewModel.UserId);
