@@ -26,11 +26,11 @@
                                     <form role="form">
                                         <div class="form-group">
                                             <label>Display name</label>
-                                            <input class="form-control" ng-model="user.newDisplayName" />
+                                            <input class="form-control" ng-model="user.newDisplayName" required/>
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input class="form-control" ng-model="user.newEmail" />
+                                            <input type="email" class="form-control" ng-model="user.newEmail" />
                                         </div>
                                         <div class="form-group">
                                             <input bs-switch switch-size="small" switch-on-label="Active" switch-off-label="Inactive" switch-on="success" switch-off="default" ng-model="user.newIsActive" />
