@@ -14,15 +14,15 @@
                     <input type="text" class="form-control" ng-model="search" />
                 </div>
                 <div id="userContainer">
-                    <a ng-repeat="user in users | filter:search">
+                    <div ng-repeat="user in users | filter:search">
                         <div class="media col-xs-12 col-sm-12 col-md-6 col-lg-6" >
                             <img class="media-object pull-left" src="http://www.gravatar.com/avatar/{{user.GravatarHash}}?s=60" alt="" />
                             <div class="media-body pull-left">
-                                <div ng-hide="user.editing" ng-click="startEdit(user)">
+                                <div ng-if="!user.editing" ng-click="startEdit(user)">
                                     <h4 class="media-heading">{{user.DisplayName}}</h4>
                                     {{user.Roles}} | {{user.Email}}
                                 </div>
-                                <div ng-show="user.editing">
+                                <div ng-if="user.editing">
                                     <form role="form">
                                         <div class="form-group">
                                             <label>Display name</label>
@@ -32,21 +32,17 @@
                                             <label>Email</label>
                                             <input class="form-control" ng-model="user.newEmail" />
                                         </div>
-                                        @*<div class="form-group">
-                                            <label>Roles</label>
-                                            @foreach (var role in roles)
-                                            {
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" ng-model="user.SelectedRoleIds[@role.Key]" />
-                                                        @role.Value
-                                                    </label>
-                                                </div>
-                                            }
-                                        </div>*@
                                         <div class="form-group">
-                                            <label>Active</label>
-                                            <input type="checkbox" ng-model="user.newIsActive" ng-checked="user.newIsActive"/>
+                                            <input bs-switch switch-size="small" switch-on-label="Active" switch-off-label="Inactive" switch-on="success" switch-off="default" ng-model="user.newIsActive" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Roles</label>
+                                            <div class="checkbox" ng-repeat="role in user.newRoles">
+                                                <label>
+                                                    <input type="checkbox" ng-model="role.IsSelected" />
+                                                    {{role.RoleName}}
+                                                </label>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <button ng-click="save(user);" class="btn btn-primary">Save</button>
@@ -56,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>

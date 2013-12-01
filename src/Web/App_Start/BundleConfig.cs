@@ -16,7 +16,7 @@ namespace Web.App_Start
                     "~/Public/Css/FontAwesome/font-awesome.min.css",
                     "~/Public/Css/Bootstrap/bootstrap.min.css",
                     "~/Public/Css/Jquery.Ui/jquery-ui-1.10.3.custom.min.css",
-                    //"~/Public/Css/BootstrapSwitch/bootstrap-switch.css",
+                    "~/Public/Css/BootstrapSwitch/bootstrap-switch.css",
                     "~/Public/Css/JqGrid/ui.jqgrid.css",
                     "~/Public/Css/JqGrid/ui.jqgrid.custom.css",
                     "~/Public/Css/main.css"
@@ -34,7 +34,8 @@ namespace Web.App_Start
                     "~/Public/Js/Jquery.Validate/jquery.validate.unobtrusive.min.js",
                     "~/Public/Js/Angular/angular.min.js",
                     "~/Public/Js/Angular/angular-route.min.js",
-                    //"~/Public/Js/BootstrapSwitch/bootstrap-switch.min.js",
+                    "~/Public/Js/BootstrapSwitch/bootstrap-switch.min.js",
+                    "~/Public/Js/BootstrapSwitch/angular-bootstrap-switch.min.js",
                     "~/Public/Js/JqGrid/JqGrid/i18n/grid.locale-nl.js",
                     "~/Public/Js/JqGrid/jquery.jqGrid.min.js",
                     "~/Public/Js/Jquery.Form/jquery.form.js",

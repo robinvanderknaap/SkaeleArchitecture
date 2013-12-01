@@ -2,7 +2,8 @@
 
 var userModule = angular.module('userModule', [
     'ngRoute',
-    'userControllers'
+    'userControllers',
+    'frapontillo.bootstrap-switch'
 ]);
 
 userModule.config(['$routeProvider',

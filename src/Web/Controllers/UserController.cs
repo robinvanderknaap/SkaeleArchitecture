@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain.AbstractRepository;
@@ -31,11 +32,6 @@ namespace Web.Controllers
             return PartialView("Partials/UserList");
         }
 
-        public ActionResult UserDetail()
-        {
-            return PartialView("Partials/UserDetail");
-        }
-
         public JsonResult GetUsers()
         {
             var users = _userRepository.GetAll()
@@ -58,6 +54,20 @@ namespace Web.Controllers
             
             user.SetEmail(userViewModel.NewEmail, _userRepository);
             user.DisplayName = userViewModel.NewDisplayName;
+            user.IsActive = userViewModel.NewIsActive;
+
+            foreach (var newRole in userViewModel.NewRoles)
+            {
+                if (newRole.IsSelected && !user.IsInRole(newRole.RoleName))
+                {
+                    user.Roles.Add((Domain.Users.Role)Enum.Parse(typeof(Domain.Users.Role), newRole.RoleName));
+                }
+
+                if (!newRole.IsSelected && user.IsInRole(newRole.RoleName))
+                {
+                    user.Roles.Remove((Domain.Users.Role)Enum.Parse(typeof(Domain.Users.Role), newRole.RoleName));
+                }
+            }
 
             using (var transaction = new Transaction(_userRepository.Session))
             {
